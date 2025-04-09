@@ -1,4 +1,4 @@
-import { FlatList, Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, SafeAreaView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 import { Rocket } from "../../components/Rocket";
 import { To } from "../../components/To";
@@ -10,6 +10,8 @@ import { Clipboard } from "../../components/Clipboard";
 export function Home() {
     const [tasks, setTasks] = useState<string[]>([]);
     const [textTask, setTextTask] = useState('');
+    const [done, setDone] = useState(0);
+
 
     function addTask() {
         setTasks((prevState) => [...prevState, textTask]);
@@ -17,7 +19,15 @@ export function Home() {
     }
 
     function handleRemove(item: string) {
+        setTasks(prevState => prevState.filter((task) => task !== item));
+    }
 
+    function handleCheck(checked: boolean) {
+        if (checked) {
+            setDone((prevState) => prevState + 1);
+        } else {
+            setDone((prevState) => prevState - 1);
+        }
     }
 
     return (
@@ -30,17 +40,33 @@ export function Home() {
                 </View>
 
                 <View style={styles.form}>
-                    <TextInput style={styles.input} placeholder='Adicione uma nova tarefa' placeholderTextColor={'#808080'} />
+                    <TextInput style={[styles.input]}
+                        placeholder='Adicione uma nova tarefa'
+                        placeholderTextColor={'#808080'}
+                        onChangeText={setTextTask}
+                        value={textTask}
+                    />
                     <TouchableOpacity style={styles.button} onPress={addTask}>
-                        <Image source={require('../../../../assets/icons/plus.png')} style={styles.textButton} />
+                        <Image source={require('../../../../assets/icons/plus.png')} />
                     </TouchableOpacity>
                 </View>
             </View>
 
             <View style={styles.body}>
                 <View style={styles.info}>
-                    <Text style={styles.created}>Criadas</Text>
-                    <Text style={styles.done}>Concluidas</Text>
+                    <Text style={styles.created}>
+                        Criadas
+                        <View style={styles.badge}>
+                            <Text style={styles.counter}>{tasks.length}</Text>
+                        </View>
+                    </Text>
+
+                    <Text style={styles.done}>
+                        Concluidas
+                        <View style={styles.badge}>
+                            <Text style={styles.counter}>{done}</Text>
+                        </View>
+                    </Text>
                 </View>
 
 
@@ -50,7 +76,8 @@ export function Home() {
                     renderItem={({ item }) => (
                         <Tasks
                             key={item}
-                            name={item}
+                            text={item}
+                            check={handleCheck}
                             onRemove={() => handleRemove(item)}
                         />
                     )}

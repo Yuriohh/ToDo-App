@@ -25,6 +25,9 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#262626'
     },
+    stroke: {
+        color: '#f2f2f2',
+    },
     button: {
         width: 52,
         height: 52,
@@ -33,12 +36,9 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 5
     },
-    textButton: {
-
-    },
     body: {
         flex: 1,
-        backgroundColor: '#333',
+        backgroundColor: '#1a1a1a',
         padding: 24
     },
     info: {
@@ -52,6 +52,17 @@ export const styles = StyleSheet.create({
     done: {
         color: '#8284fa',
         fontSize: 16,
+    },
+    badge: {
+        width: 17,
+        height: 17,
+        backgroundColor: '#333',
+        borderRadius: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    counter: {
+        color: '#f2f2f2'
     },
     emptyList: {
         justifyContent: 'center',
