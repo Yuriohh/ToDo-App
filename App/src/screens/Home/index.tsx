@@ -12,7 +12,6 @@ export function Home() {
     const [textTask, setTextTask] = useState('');
     const [done, setDone] = useState(0);
 
-
     function addTask() {
         setTasks((prevState) => [...prevState, textTask]);
         setTextTask('');
@@ -40,7 +39,7 @@ export function Home() {
                 </View>
 
                 <View style={styles.form}>
-                    <TextInput style={[styles.input]}
+                    <TextInput style={styles.input}
                         placeholder='Adicione uma nova tarefa'
                         placeholderTextColor={'#808080'}
                         onChangeText={setTextTask}
@@ -83,11 +82,14 @@ export function Home() {
                     )}
                     showsVerticalScrollIndicator={false}
                     ListEmptyComponent={() => (
-                        <View style={styles.emptyList}>
-                            <Clipboard />
-                            <Text style={styles.emptyListText}>Você ainda não tem tarefas cadastradas</Text>
-                            <Text style={styles.emptyListText2}>Crie tarefas e organize seus itens a fazer</Text>
-                        </View>
+                        <>
+                            <View style={styles.lineStyle}></View>
+                            <View style={styles.emptyList}>
+                                <Clipboard />
+                                <Text style={styles.emptyListText}>Você ainda não tem tarefas cadastradas</Text>
+                                <Text style={styles.emptyListText2}>Crie tarefas e organize seus itens a fazer</Text>
+                            </View>
+                        </>
                     )}
                 />
             </View>

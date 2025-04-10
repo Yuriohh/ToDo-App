@@ -23,9 +23,10 @@ export const styles = StyleSheet.create({
         height: 54,
         marginRight: 4,
         flex: 1,
-        backgroundColor: '#262626'
+        backgroundColor: '#262626',
+        color: '#f2f2f2'
     },
-    stroke: {
+    focus: {
         color: '#f2f2f2',
     },
     button: {
@@ -63,6 +64,11 @@ export const styles = StyleSheet.create({
     },
     counter: {
         color: '#f2f2f2'
+    },
+    lineStyle: {
+        borderWidth: 0.5,
+        borderColor: '#808080',
+        marginTop: 30,
     },
     emptyList: {
         justifyContent: 'center',
